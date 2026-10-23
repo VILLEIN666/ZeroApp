@@ -9,11 +9,11 @@ class VerifyRequest(BaseModel):
     code: str
     device_name: str
 
-# অটো কানেক্ট (যেকোনো কোড গ্রহণ করবে)
 @app.post("/api/pairing/verify")
 async def verify_code(req: VerifyRequest):
+    # অটো কানেক্ট: কোনো কোড চেক না করেই ডিভাইস অ্যাড হবে
     devices[req.device_name] = {"status": "online"}
-    return {"success": True, "message": "Device connected"}
+    return {"success": True, "message": "Device connected automatically"}
 
 @app.get("/api/devices")
 async def get_devices():
